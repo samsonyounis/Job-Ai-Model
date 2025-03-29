@@ -8,10 +8,25 @@ import io
 import pytesseract
 from pdf2image import convert_from_bytes
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 from pymupdf import pymupdf
 
 app = FastAPI()
 load_dotenv()
+
+origins = [
+    "http://localhost:4200",  # Allow requests from frontend running locally
+    "https://yourfrontenddomain.com",  # Allow requests from deployed frontend
+    "*"  # Allow all domains (use cautiously in production)
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Specify allowed origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 # OpenAI API Key
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
