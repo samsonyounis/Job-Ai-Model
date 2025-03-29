@@ -1,9 +1,7 @@
 import os
 import openai
-import pdfminer.high_level
 from fastapi import FastAPI, UploadFile, File, Form
 from io import BytesIO
-import pdfplumber
 import docx
 import io
 import fitz  # PyMuPDF

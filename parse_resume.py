@@ -4,7 +4,7 @@ import docx
 import spacy
 import io
 import re
-from typing import List, Dict
+from typing import Dict
 
 app = FastAPI()
 nlp = spacy.load("en_core_web_sm")
