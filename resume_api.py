@@ -1,3 +1,4 @@
+import os
 import openai
 import pdfminer.high_level
 from fastapi import FastAPI, UploadFile, File, Form
@@ -8,15 +9,20 @@ import io
 import fitz  # PyMuPDF
 import pytesseract
 from pdf2image import convert_from_bytes
+from dotenv import load_dotenv
 
 
 app = FastAPI()
+load_dotenv()
 
-# OpenAI API Key (Replace with your own)
-# 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
-OPENAI_API_KEY = "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"
+# OpenAI API Key
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+if not OPENAI_API_KEY:
+    raise ValueError("API_KEY is not set in the environment.")
 openai_client = openai.OpenAI(api_key=OPENAI_API_KEY)
+
+# print("Key is: "+OPENAI_API_KEY)
 
 
 def extract_text_from_pdf(pdf_bytes: BytesIO) -> str:
