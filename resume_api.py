@@ -76,7 +76,12 @@ def parse_resume_with_openai(text: str) -> dict:
     """Send resume text to OpenAI and return structured resume data."""
     prompt = f"""
     You are an expert in resume parsing. Extract the different sections from the resume text below:
-
+    
+    contact information
+    skills
+    experience
+    education
+    certifications
 
     This is the Resume Text below:
     {text}
