@@ -4,7 +4,7 @@ from fastapi import FastAPI, UploadFile, File, Form
 from io import BytesIO
 import docx
 import io
-import fitz
+import pymupdf as fitz
 import pytesseract
 from pdf2image import convert_from_bytes
 from dotenv import load_dotenv
@@ -108,6 +108,29 @@ def extract_tables_with_openai(text: str) -> dict:
 
     This is the pdf text:
     {text}
+
+    just return data the response in this structure form List<Map<String, String>> json. do not add extra explanation;
+.
+    """
+
+    response = openai_client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0
+    )
+
+    return response.choices[0].message.content
+
+def scrape_url_openai(url: str) -> dict:
+    """Send resume text to OpenAI and return structured resume data."""
+    prompt = f"""
+    You are an expert in scraping the website url. please help me to scrape this url and return
+    tax fund tax information in structured format. some websites have the information in pdf,csv
+    or excel file which have to be downloaded, other websites have the information on tables.
+    you may need to click around the page to find the data.
+
+    This is the website url below
+    {url}
 
     just return data the response in this structure form List<Map<String, String>> json. do not add extra explanation;
 .
