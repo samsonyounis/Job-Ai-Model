@@ -136,6 +136,7 @@ async def parse_resume(file: UploadFile = File(...)):
     except Exception as e:
         return {"error": str(e)}
 
+
 @app.post("/score/")
 async def score_candidate(file: UploadFile = File(...), job_desc: str = Form(...)):
     """Extracts resume details and returns structured data."""
