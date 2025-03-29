@@ -4,7 +4,7 @@ from fastapi import FastAPI, UploadFile, File, Form
 from io import BytesIO
 import docx
 import io
-import fitz  # PyMuPDF
+import fitz
 import pytesseract
 from pdf2image import convert_from_bytes
 from dotenv import load_dotenv
