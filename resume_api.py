@@ -4,11 +4,11 @@ from fastapi import FastAPI, UploadFile, File, Form
 from io import BytesIO
 import docx
 import io
-import pymupdf as fitz
+# import pymupdf as fitz
 import pytesseract
 from pdf2image import convert_from_bytes
 from dotenv import load_dotenv
-
+from pymupdf import pymupdf
 
 app = FastAPI()
 load_dotenv()
@@ -25,7 +25,7 @@ openai_client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 def extract_text_from_pdf(pdf_bytes: BytesIO) -> str:
     """Extract text from a PDF using PyMuPDF and handle scanned PDFs with OCR."""
-    doc = fitz.open(stream=pdf_bytes.getvalue(), filetype="pdf")
+    doc = pymupdf.open(stream=pdf_bytes.getvalue(), filetype="pdf")
 
     # Check if PDF is encrypted
     if doc.is_encrypted:
