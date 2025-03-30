@@ -114,7 +114,7 @@ def score_openai(text: str, desc: str) -> dict:
     this is the job description
     {desc}
 
-    Just return the overall score in percentage and recommendation in string response in structured JSON format.
+    Just return the overall score in percentage and recommendation in structured JSON format.
     The response must be **only** a valid JSON object, without any additional text, explanations, or formatting. Do **not** include markdown, backticks, or labels like "json".
     """
 
@@ -204,7 +204,7 @@ async def score_candidate(file: UploadFile = File(...), job_desc: str = Form(...
             return {"error": "Unsupported file format. Use PDF or DOCX"}
         print("the text is: "+resume_text)
         score = score_openai(resume_text,job_desc)
-        return {"score": score}
+        return {score}
     except Exception as e:
         return {"error": str(e)}
 
