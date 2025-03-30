@@ -114,7 +114,7 @@ def score_openai(text: str, desc: str) -> dict:
     this is the job description
     {desc}
 
-    Just return the overall score in percentage and recommendation in structured JSON format of map of key value.
+    Just return the overall score in percentage and recommendation.
     The response must be **only** a valid JSON object, without any additional text, explanations, or formatting. Do **not** include markdown, backticks, or labels like "json".
     """
 
