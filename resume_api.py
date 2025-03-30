@@ -75,19 +75,21 @@ def extract_text_from_docx(file):
 def parse_resume_with_openai(text: str) -> dict:
     """Send resume text to OpenAI and return structured resume data."""
     prompt = f"""
-    You are an expert in resume parsing. Extract the different sections from the resume text below:
-    
-    contact information
-    summary
-    skills
-    experience
-    education
-    certifications
+    You are an expert in resume parsing. Extract the following sections from the resume text below and return a structured JSON object:
 
-    This is the Resume Text below:
+    - contact_information
+    - summary
+    - skills
+    - experience
+    - education
+    - certifications
+
+    The response must be **only** a valid JSON object, without any additional text, explanations, or formatting. Do **not** include markdown, backticks, or labels like "json".
+
+    Resume Text:
     {text}
 
-    Return the response in structured JSON format in map of key value.
+    Return only the JSON object.
     """
 
     response = openai_client.chat.completions.create(
