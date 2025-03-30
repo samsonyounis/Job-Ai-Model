@@ -83,6 +83,8 @@ def parse_resume_with_openai(text: str) -> dict:
     - experience
     - education
     - certifications
+    - hobbies
+    - references
 
     The response must be **only** a valid JSON object, without any additional text, explanations, or formatting. Do **not** include markdown, backticks, or labels like "json".
 
@@ -113,6 +115,7 @@ def score_openai(text: str, desc: str) -> dict:
     {desc}
 
     Just return the overall score in percentage and recommendation in string response in structured JSON format.
+    The response must be **only** a valid JSON object, without any additional text, explanations, or formatting. Do **not** include markdown, backticks, or labels like "json".
     """
 
     response = openai_client.chat.completions.create(
