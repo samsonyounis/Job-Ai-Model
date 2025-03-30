@@ -78,6 +78,7 @@ def parse_resume_with_openai(text: str) -> dict:
     You are an expert in resume parsing. Extract the different sections from the resume text below:
     
     contact information
+    summary
     skills
     experience
     education
