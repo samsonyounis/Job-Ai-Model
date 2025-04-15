@@ -40,11 +40,11 @@ class QueryRequest(BaseModel):
     question: str
 
 # OpenAI API Key
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+KEY = os.getenv("OPENAI_API_KEY")
 
-if not OPENAI_API_KEY:
+if not KEY:
     raise ValueError("API_KEY is not set in the environment.")
-openai_client = openai.OpenAI(api_key=OPENAI_API_KEY)
+openai_client = openai.OpenAI(api_key=KEY)
 
 
 def extract_text_from_pdf(pdf_bytes: BytesIO) -> str:
