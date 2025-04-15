@@ -40,7 +40,7 @@ class QueryRequest(BaseModel):
     question: str
 
 # OpenAI API Key
-KEY = os.getenv("KEY")
+KEY = os.getenv("OPENAI_API_KEY")
 
 if not KEY:
     raise ValueError("API_KEY is not set in the environment.")
