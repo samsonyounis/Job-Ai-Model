@@ -179,7 +179,7 @@ def synthesize_with_gtts(text, output_dir="generated_audio") -> str:
     return file_path
 
 
-@app.post("/api/tts")
+@app.post("/api/tts/")
 def generate_audio(data: dict = Body(...)):
     text = data["text"]
 
@@ -260,7 +260,7 @@ async def extract_data(file: UploadFile = File(...)):
     except Exception as e:
         return {"error": str(e)}
 
-@app.post("/ask")
+@app.post("/ask/")
 def ask_dragon(req: QueryRequest):
     try:
         # Step 1: Create assistant (or reuse an existing assistant)
